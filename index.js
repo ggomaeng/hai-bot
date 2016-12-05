@@ -37,8 +37,11 @@ app.post('/webhook/', (req, res) => {
         let sender = event.sender.id
         if (event.message && event.message.text) {
             let text = event.message.text;
-            if(text.toUpperCase().includes('hai!')) {
-                initialMessage(sender, 'Hello!');
+            if(text.includes('hai!')) {
+                initialMessage(sender,  `Hello ${sender.name}," what are you looking for today? Here are some commands you can ask:\n
+                - "Hai, I'm looking for someone who can teach me Algebra 2"\n
+                - "Hai, I'm looking for soneone who can share a ride to BWI tomorrow at 5:30pm"\n
+                - "-help`);
             } else {
                 sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
             }
