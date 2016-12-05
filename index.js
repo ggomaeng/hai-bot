@@ -9,7 +9,6 @@ const request = require('request')
 const app = express()
 const token = process.env.FB_PAGE_ACCESS_TOKEN;
 
-
 app.set('port', (process.env.PORT || 5000))
 
 // Process application/x-www-form-urlencoded
@@ -38,19 +37,18 @@ app.post('/webhook/', (req, res) => {
         let sender = event.sender.id
         if (event.message && event.message.text) {
             let text = event.message.text;
-            if(text.includes('hai!')) {
+            if(text.toUpperCase().includes('hai!')) {
                 initialMessage(sender, 'Hello!');
             } else {
                 sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
             }
+
         }
     }
     res.sendStatus(200)
 })
 
-
-
-export function initialMessage(sender, text) {
+function initialMessage(sender, text) {
     let messageData = { text:text }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -69,7 +67,7 @@ export function initialMessage(sender, text) {
     })
 }
 
-export function sendTextMessage(sender, text) {
+function sendTextMessage(sender, text) {
     let messageData = { text:text }
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -87,6 +85,7 @@ export function sendTextMessage(sender, text) {
         }
     })
 }
+
 
 
 // Spin up the server
