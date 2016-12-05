@@ -1,0 +1,29 @@
+{
+  "name": "hai",
+  "version": "1.0.0",
+  "description": "A Facebook chat bot that connects people with similar needs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ggomaeng/hai-bot.git"
+  },
+  "keywords": [
+    "facebook",
+    "chat",
+    "bot"
+  ],
+  "author": "Sung Woo Park, Keon Kim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ggomaeng/hai-bot/issues"
+  },
+  "homepage": "https://github.com/ggomaeng/hai-bot#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "request": "^2.79.0"
+  }
+}
