@@ -43,12 +43,13 @@ app.post('/webhook/', (req, res) => {
                 initialMessage(sender,  `Hello! :) What are you looking for? Here are some commands you can ask:\n\n"Hai, I'm looking for someone who can teach me Algebra 2"\n\n"Hai, I'm looking for soneone who can share a ride to BWI tomorrow at 5:30pm"\n\n"-help"`);
             } else {
                 const client = new Wit({accessToken: WIT_TOKEN});
-                client.message("how many people between Tuesday and Friday", {})
+                client.message(text, {})
                     .then((data) => {
+                        sendTextMessage(sender, JSON.stringify(data));
                         console.log('Yay, got Wit.ai response: ' + JSON.stringify(data));
                     })
                     .catch(console.error);
-                sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
+                // sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
             }
 
         }
