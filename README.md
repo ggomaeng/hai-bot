@@ -3,7 +3,7 @@
 Hai is designed to dynamically connect people. It analyzes what the user is requesting for, and it reaches out to match with someone who can fulfill the request.
 
 ##Data Structure
-received JSON:
+received chat JSON example:
 
 ```bash 
         {

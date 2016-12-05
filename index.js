@@ -6,8 +6,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const request = require('request')
-const app = express()
+const app = express();
+const {Wit, log} = require('node-wit');
 const token = process.env.FB_PAGE_ACCESS_TOKEN;
+const WIT_TOKEN = process.env.WIT_TOKEN;
 
 app.set('port', (process.env.PORT || 5000))
 
@@ -40,6 +42,12 @@ app.post('/webhook/', (req, res) => {
             if(text.includes('hai!')) {
                 initialMessage(sender,  `Hello! :) What are you looking for? Here are some commands you can ask:\n\n"Hai, I'm looking for someone who can teach me Algebra 2"\n\n"Hai, I'm looking for soneone who can share a ride to BWI tomorrow at 5:30pm"\n\n"-help"`);
             } else {
+                const client = new Wit({accessToken: WIT_TOKEN});
+                client.message('what is the weather in London?', {})
+                    .then((data) => {
+                        console.log('Yay, got Wit.ai response: ' + JSON.stringify(data));
+                    })
+                    .catch(console.error);
                 sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
             }
 
