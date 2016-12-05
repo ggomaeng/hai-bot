@@ -37,7 +37,7 @@ app.post('/webhook/', (req, res) => {
         let sender = event.sender.id
         if (event.message && event.message.text) {
             let text = event.message.text;
-            if(text.toUpperCase().includes('hai!')) {
+            if(text.includes('hai!')) {
                 initialMessage(sender, 'Hello!');
             } else {
                 sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
